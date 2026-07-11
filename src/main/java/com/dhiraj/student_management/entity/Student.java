@@ -1,7 +1,11 @@
 package com.dhiraj.student_management.entity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
 public class Student {
-    private int id;
+    @Id
+    private Integer id;
     private String name;
     private int age;
     private String course;
@@ -11,7 +15,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(int id, String name, int age, String course) {
+    public Student(Integer id, String name, int age, String course) {
         this.id = id;
         this.name = name;
         this.age = age;

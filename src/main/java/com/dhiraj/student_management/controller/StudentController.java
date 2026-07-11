@@ -13,14 +13,14 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 
-	@GetMapping("/")
-	public String home() {
-		return studentService.getMessage();
+	@GetMapping("/student")
+	public String getStudent() {
+		return "student API is working successfully!";
 	}
 	@PostMapping("/student")
 	public String addStudent(@RequestBody Student student) {
 		// Logic to add the student to the database or perform any other operation
-		return studentService.addStudent();
+		return studentService.addStudent(student);
 	}
 
 }

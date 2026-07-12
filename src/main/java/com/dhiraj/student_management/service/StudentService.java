@@ -16,6 +16,10 @@ public class StudentService {
     public Optional<Student> getStudentById(Integer id) {
         return studentRepository.findById(id);
     }
+    public String updateStudent(Student student) {
+        studentRepository.save(student);
+        return "Student updated successfully!";
+    }
 
     public String addStudent(Student student) {
         studentRepository.save(student);

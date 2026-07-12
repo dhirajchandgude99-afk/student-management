@@ -8,25 +8,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.dhiraj.student_management.entity.Student;
 import java.util.List;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 public class StudentController {
 
 	@Autowired
 	private StudentService studentService;
+
+
 	@GetMapping("/students")
 	public List<Student> getAllStudents() {
 		return studentService.getAllStudents();
 	}
+
 	@GetMapping("/students/{id}")
 	public Student getStudentById(@PathVariable Integer id) {
 		return studentService.getStudentById(id).orElse(null);
+	}
+
+	@PutMapping("/student")
+	public String updateStudent(@RequestBody Student student) {
+		return studentService.updateStudent(student);
 	}
 
 	@GetMapping("/student")
 	public String getStudent() {
 		return "student API is working successfully!";
 	}
+
 	@PostMapping("/student")
 	public String addStudent(@RequestBody Student student) {
 		// Logic to add the student to the database or perform any other operation

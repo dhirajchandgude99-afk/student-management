@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.dhiraj.student_management.entity.Student;
 import java.util.List;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class StudentController {
@@ -16,6 +17,10 @@ public class StudentController {
 	@GetMapping("/students")
 	public List<Student> getAllStudents() {
 		return studentService.getAllStudents();
+	}
+	@GetMapping("/students/{id}")
+	public Student getStudentById(@PathVariable Integer id) {
+		return studentService.getStudentById(id).orElse(null);
 	}
 
 	@GetMapping("/student")

@@ -4,6 +4,7 @@ import com.dhiraj.student_management.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.dhiraj.student_management.entity.Student;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -11,6 +12,9 @@ public class StudentService {
     private StudentRepository studentRepository;
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
+    }
+    public Optional<Student> getStudentById(Integer id) {
+        return studentRepository.findById(id);
     }
 
     public String addStudent(Student student) {

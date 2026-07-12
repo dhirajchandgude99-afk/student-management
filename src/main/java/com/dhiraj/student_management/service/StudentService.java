@@ -25,6 +25,11 @@ public class StudentService {
         studentRepository.save(student);
         return "Student added successfully!";
     }
+
+    public String deleteStudent(Integer id) {
+        studentRepository.deleteById(id);
+        return "Student deleted successfully!";
+    }
     public String getMessage() {
         return "Student Service is working successfully!";
     }

@@ -9,6 +9,7 @@ import com.dhiraj.student_management.entity.Student;
 import java.util.List;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 @RestController
 public class StudentController {
@@ -30,6 +31,11 @@ public class StudentController {
 	@PutMapping("/student")
 	public String updateStudent(@RequestBody Student student) {
 		return studentService.updateStudent(student);
+	}
+
+	@DeleteMapping("/student/{id}")
+	public String deleteStudent(@PathVariable Integer id) {
+		return studentService.deleteStudent(id);
 	}
 
 	@GetMapping("/student")

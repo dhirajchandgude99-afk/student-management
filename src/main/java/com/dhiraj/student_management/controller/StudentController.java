@@ -6,12 +6,17 @@ import com.dhiraj.student_management.service.StudentService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.dhiraj.student_management.entity.Student;
+import java.util.List;
 
 @RestController
 public class StudentController {
 
 	@Autowired
 	private StudentService studentService;
+	@GetMapping("/students")
+	public List<Student> getAllStudents() {
+		return studentService.getAllStudents();
+	}
 
 	@GetMapping("/student")
 	public String getStudent() {

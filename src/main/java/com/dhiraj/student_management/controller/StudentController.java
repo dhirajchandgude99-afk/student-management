@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 public class StudentController {
@@ -28,9 +29,9 @@ public class StudentController {
 		return studentService.getStudentById(id);
 	}
 
-	@PutMapping("/student")
-	public String updateStudent(@RequestBody Student student) {
-		return studentService.updateStudent(student);
+	@GetMapping("/message")
+	public ResponseEntity<String> getMessage() {
+		return ResponseEntity.ok(studentService.getMessage());
 	}
 
 	@DeleteMapping("/student/{id}")

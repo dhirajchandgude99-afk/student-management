@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.dhiraj.student_management.entity.Student;
 import java.util.List;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 
 @RestController
 public class StudentController {
@@ -45,9 +45,9 @@ public class StudentController {
 	}
 
 	@PostMapping("/student")
-	public String addStudent(@RequestBody Student student) {
+	public ResponseEntity<String> addStudent(@RequestBody Student student) {
 		// Logic to add the student to the database or perform any other operation
-		return studentService.addStudent(student);
+		return ResponseEntity.status(HttpStatus.CREATED).body(studentService.addStudent(student));
 	}
 
 }

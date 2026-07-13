@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import jakarta.validation.Valid;
 
 @RestController
 public class StudentController {
@@ -45,8 +46,7 @@ public class StudentController {
 	}
 
 	@PostMapping("/student")
-	public ResponseEntity<String> addStudent(@RequestBody Student student) {
-		// Logic to add the student to the database or perform any other operation
+	public ResponseEntity<String> addStudent(@Valid @RequestBody Student student) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(studentService.addStudent(student));
 	}
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import jakarta.validation.Valid;
+import com.dhiraj.student_management.dto.StudentDTO;
 
 @RestController
 public class StudentController {
@@ -25,9 +26,9 @@ public class StudentController {
 		return studentService.getAllStudents();
 	}
 
-	@GetMapping("/students/{id}")
-	public Student getStudentById(@PathVariable Integer id) {
-		return studentService.getStudentById(id);
+	@GetMapping("/students/dto/{id}")
+	public ResponseEntity<StudentDTO> getStudentDTOById(@PathVariable Integer id) {
+		return ResponseEntity.ok(studentService.getStudentDTOById(id));
 	}
 
 	@GetMapping("/message")

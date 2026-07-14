@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.dhiraj.student_management.entity.Student;
 import java.util.List;
 import com.dhiraj.student_management.exception.StudentNotFoundException;
+import com.dhiraj.student_management.dto.StudentDTO;
 
 @Service
 public class StudentService {
@@ -13,9 +14,14 @@ public class StudentService {
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
-    public Student getStudentById(Integer id) {
-        return studentRepository.findById(id)
-        .orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + id));
+    public StudentDTO getStudentDTOById(Integer id) {
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + id));
+        StudentDTO studentDTO = new StudentDTO();
+        studentDTO.setId(student.getId());
+        studentDTO.setName(student.getName());
+        studentDTO.setCourse(student.getCourse());
+        return studentDTO;
     }
     public String updateStudent(Student student) {
         studentRepository.save(student);

@@ -7,7 +7,8 @@ import java.util.List;
 import com.dhiraj.student_management.exception.StudentNotFoundException;
 import com.dhiraj.student_management.dto.StudentDTO;
 import org.modelmapper.ModelMapper;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class StudentService {
     @Autowired
@@ -39,6 +40,13 @@ public class StudentService {
     }
     public String getMessage() {
         return "Student Service is working successfully!";
+    }
+    public StudentDTO addStudent(StudentDTO studentDTO) {
+        log.info("Adding a new student: {}", studentDTO);
+        Student student = modelMapper.map(studentDTO, Student.class);
+        Student savedStudent = studentRepository.save(student);
+        log.info("Student added successfully: {}", savedStudent);
+        return studentDTO;
     }
 
 }

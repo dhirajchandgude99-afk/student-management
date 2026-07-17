@@ -18,6 +18,11 @@ public class StudentService {
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
+    public Student getStudentByName(String name) {
+        return studentRepository.findByName(name)
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with name: " + name));
+        
+    }
     public StudentDTO getStudentDTOById(Integer id) {
         Student student = studentRepository.findById(id)
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + id));

@@ -31,6 +31,11 @@ public class StudentController {
 		return ResponseEntity.ok(studentService.getStudentDTOById(id));
 	}
 
+	@GetMapping("/students/name/{name}")
+	public ResponseEntity<Student> getStudentByName(@PathVariable String name) {
+		return ResponseEntity.ok(studentService.getStudentByName(name));
+	}
+
 	@GetMapping("/message")
 	public ResponseEntity<String> getMessage() {
 		return ResponseEntity.ok(studentService.getMessage());

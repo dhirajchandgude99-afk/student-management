@@ -3,16 +3,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
 public class Student {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotBlank(message = "Name cannot be empty")
+    
     private String name;
-    @Min(value = 18, message = "Age must be at least 18")
+    
     private int age;
-    @NotBlank(message = "Course cannot be empty")
+   
     private String course;
     
 
@@ -32,7 +35,7 @@ public class Student {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

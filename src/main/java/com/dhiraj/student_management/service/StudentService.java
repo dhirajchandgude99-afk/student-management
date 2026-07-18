@@ -53,5 +53,8 @@ public class StudentService {
         log.info("Student added successfully: {}", savedStudent);
         return studentDTO;
     }
+    public List<Student> getStudentsByCourse(String course) {
+        return studentRepository.findByCourse(course);
+    }
 
 }

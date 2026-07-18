@@ -56,4 +56,9 @@ public class StudentController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(studentService.addStudent(student));
 	}
 
+	@GetMapping("/students/course/{course}")
+	public ResponseEntity<List<Student>> getStudentsByCourse(@PathVariable String course) {
+		return ResponseEntity.ok(studentService.getStudentsByCourse(course));
+	}
+
 }

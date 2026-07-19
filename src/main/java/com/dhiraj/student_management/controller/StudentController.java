@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.dhiraj.student_management.service.StudentService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.dhiraj.student_management.entity.Student;
 import java.util.List;
@@ -59,6 +60,10 @@ public class StudentController {
 	@GetMapping("/students/course/{course}")
 	public ResponseEntity<List<Student>> getStudentsByCourse(@PathVariable String course) {
 		return ResponseEntity.ok(studentService.getStudentsByCourse(course));
+	}
+	@PutMapping("/students/{id}")
+	public ResponseEntity<StudentDTO> updateStudent(@PathVariable Integer id, @Valid @RequestBody StudentDTO studentDTO) {
+		return ResponseEntity.ok(studentService.updateStudent(id, studentDTO));
 	}
 
 }

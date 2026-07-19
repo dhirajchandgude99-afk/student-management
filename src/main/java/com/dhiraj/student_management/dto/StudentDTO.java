@@ -4,12 +4,15 @@ public class StudentDTO {
     private Integer id;
     private String name;
     private String course;
+    private Integer age;
     public StudentDTO() {
     }
-    public StudentDTO(Integer id, String name, String course) {
+    public StudentDTO(Integer id, String name, String course, Integer age) {
         this.id = id;
         this.name = name;
         this.course = course;
+        this.age = age;
+        
     }
     public Integer getId() {
         return id;
@@ -28,5 +31,11 @@ public class StudentDTO {
     }
     public void setCourse(String course) {
         this.course = course;
+    }
+    public Integer getAge() {
+        return age;
+    }
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

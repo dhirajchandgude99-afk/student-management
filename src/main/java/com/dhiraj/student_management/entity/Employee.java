@@ -1,9 +1,9 @@
 package com.dhiraj.student_management.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
+//import lombok.Getter; //
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+//import lombok.Setter;//
 @AllArgsConstructor
 @Data
 @NoArgsConstructor

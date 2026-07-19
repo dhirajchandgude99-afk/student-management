@@ -56,5 +56,16 @@ public class StudentService {
     public List<Student> getStudentsByCourse(String course) {
         return studentRepository.findByCourse(course);
     }
+    public StudentDTO updateStudent(Integer id, StudentDTO studentDTO) {
+        log.info("Updating student with id: {}", id);
+        Student Student = studentRepository.findById(id)
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + id));
+       Student.setName(studentDTO.getName());
+        Student.setAge(studentDTO.getAge());
+        Student.setCourse(studentDTO.getCourse());
+        Student updatedStudent = studentRepository.save(Student);
+        log.info("Student updated successfully: {}", updatedStudent);
+        return modelMapper.map(updatedStudent, StudentDTO.class);
+    }
 
 }

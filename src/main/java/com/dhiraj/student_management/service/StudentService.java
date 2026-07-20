@@ -39,9 +39,10 @@ public class StudentService {
         return "Student added successfully!";
     }
 
-    public String deleteStudent(Integer id) {
-        studentRepository.deleteById(id);
-        return "Student deleted successfully!";
+    public void deleteStudent(Integer id) {
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + id));
+        studentRepository.delete(student);
     }
     public String getMessage() {
         return "Student Service is working successfully!";
@@ -67,5 +68,6 @@ public class StudentService {
         log.info("Student updated successfully: {}", updatedStudent);
         return modelMapper.map(updatedStudent, StudentDTO.class);
     }
+    
 
 }

@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import jakarta.validation.Valid;
 import com.dhiraj.student_management.dto.StudentDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @RestController
 public class StudentController {
@@ -65,6 +67,10 @@ public class StudentController {
 	@PutMapping("/students/{id}")
 	public ResponseEntity<StudentDTO> updateStudent(@PathVariable Integer id, @Valid @RequestBody StudentDTO studentDTO) {
 		return ResponseEntity.ok(studentService.updateStudent(id, studentDTO));
+	}
+	@GetMapping("/students/page")
+	public ResponseEntity<Page<StudentDTO>> getAllStudents(Pageable pageable) {
+		return ResponseEntity.ok(studentService.getAllStudents(pageable));
 	}
 
 }

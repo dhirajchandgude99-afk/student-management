@@ -8,6 +8,8 @@ import com.dhiraj.student_management.exception.StudentNotFoundException;
 import com.dhiraj.student_management.dto.StudentDTO;
 import org.modelmapper.ModelMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 @Slf4j
 @Service
 public class StudentService {
@@ -67,6 +69,10 @@ public class StudentService {
         Student updatedStudent = studentRepository.save(Student);
         log.info("Student updated successfully: {}", updatedStudent);
         return modelMapper.map(updatedStudent, StudentDTO.class);
+    }
+    public Page<StudentDTO> getAllStudents(Pageable pageable) {
+        Page<Student> studentpage = studentRepository.findAll(pageable);
+        return studentpage.map(student -> modelMapper.map(student, StudentDTO.class));
     }
     
 

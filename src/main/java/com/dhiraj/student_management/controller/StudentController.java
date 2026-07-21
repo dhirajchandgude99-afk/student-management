@@ -72,5 +72,9 @@ public class StudentController {
 	public ResponseEntity<Page<StudentDTO>> getAllStudents(Pageable pageable) {
 		return ResponseEntity.ok(studentService.getAllStudents(pageable));
 	}
+	@GetMapping("/students/sort/{field}")
+	public ResponseEntity<List<StudentDTO>> getAllStudentsSorted(@PathVariable String field) {
+		return ResponseEntity.ok(studentService.getAllStudentsSorted(field));
+	}
 
 }

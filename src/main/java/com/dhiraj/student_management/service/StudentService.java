@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 @Slf4j
 @Service
 public class StudentService {
@@ -73,6 +74,11 @@ public class StudentService {
     public Page<StudentDTO> getAllStudents(Pageable pageable) {
         Page<Student> studentpage = studentRepository.findAll(pageable);
         return studentpage.map(student -> modelMapper.map(student, StudentDTO.class));
+    }
+    public List<StudentDTO>getAllStudentsSorted(String field){
+        List<Student>students = studentRepository.findAll(Sort.by(field));
+        return students.stream().map(student -> modelMapper.map(student, StudentDTO.class))
+                .toList();
     }
     
 

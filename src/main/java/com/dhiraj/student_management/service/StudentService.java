@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.PageRequest;
 @Slf4j
 @Service
 public class StudentService {
@@ -79,6 +80,11 @@ public class StudentService {
         List<Student>students = studentRepository.findAll(Sort.by(field));
         return students.stream().map(student -> modelMapper.map(student, StudentDTO.class))
                 .toList();
+    }
+    public Page<StudentDTO> getAllStudentsWithPaginationAndSorting(int page, int size,String field) {
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(field));
+        Page<Student> students = studentRepository.findAll(pageRequest);
+        return students.map(student -> modelMapper.map(student, StudentDTO.class));
     }
     
 

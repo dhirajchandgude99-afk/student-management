@@ -16,6 +16,7 @@ import jakarta.validation.Valid;
 import com.dhiraj.student_management.dto.StudentDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class StudentController {
@@ -75,6 +76,13 @@ public class StudentController {
 	@GetMapping("/students/sort/{field}")
 	public ResponseEntity<List<StudentDTO>> getAllStudentsSorted(@PathVariable String field) {
 		return ResponseEntity.ok(studentService.getAllStudentsSorted(field));
+	}
+	@GetMapping("/students/page-sort")
+	public ResponseEntity<Page<StudentDTO>> getAllStudentsWithPaginationAndSorting(
+			@RequestParam int page,
+			@RequestParam int size,
+			@RequestParam String field) {
+		return ResponseEntity.ok(studentService.getAllStudentsWithPaginationAndSorting(page, size, field));
 	}
 
 }

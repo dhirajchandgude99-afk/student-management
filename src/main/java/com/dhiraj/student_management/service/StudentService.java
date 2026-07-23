@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.PageRequest;
+
 @Slf4j
 @Service
 public class StudentService {
@@ -86,6 +87,11 @@ public class StudentService {
         Page<Student> students = studentRepository.findAll(pageRequest);
         return students.map(student -> modelMapper.map(student, StudentDTO.class));
     }
-    
+    public List<StudentDTO> getStudentsByAgeGreaterThan(Integer age) {
+        List<Student> students = studentRepository.findStudentsByAgeGreaterThan(age);
+        return students.stream()
+                .map(student -> modelMapper.map(student, StudentDTO.class))
+                .toList();
+    }
 
 }

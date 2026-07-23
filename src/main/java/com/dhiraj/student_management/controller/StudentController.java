@@ -15,7 +15,7 @@ import org.springframework.http.HttpStatus;
 import jakarta.validation.Valid;
 import com.dhiraj.student_management.dto.StudentDTO;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+// import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
@@ -25,10 +25,10 @@ public class StudentController {
 	private StudentService studentService;
 
 
-	@GetMapping("/students")
-	public List<Student> getAllStudents() {
-		return studentService.getAllStudents();
-	}
+	// @GetMapping("/students")
+	// public List<Student> getAllStudents() {
+	// 	return studentService.getAllStudents();
+	// }
 
 	@GetMapping("/students/dto/{id}")
 	public ResponseEntity<StudentDTO> getStudentDTOById(@PathVariable Integer id) {
@@ -69,10 +69,10 @@ public class StudentController {
 	public ResponseEntity<StudentDTO> updateStudent(@PathVariable Integer id, @Valid @RequestBody StudentDTO studentDTO) {
 		return ResponseEntity.ok(studentService.updateStudent(id, studentDTO));
 	}
-	@GetMapping("/students/page")
-	public ResponseEntity<Page<StudentDTO>> getAllStudents(Pageable pageable) {
-		return ResponseEntity.ok(studentService.getAllStudents(pageable));
-	}
+	// @GetMapping("/students/page")
+	// public ResponseEntity<Page<StudentDTO>> getAllStudents(Pageable pageable) {
+	// 	return ResponseEntity.ok(studentService.getAllStudents(pageable));
+	// }
 	@GetMapping("/students/sort/{field}")
 	public ResponseEntity<List<StudentDTO>> getAllStudentsSorted(@PathVariable String field) {
 		return ResponseEntity.ok(studentService.getAllStudentsSorted(field));

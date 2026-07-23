@@ -9,7 +9,7 @@ import com.dhiraj.student_management.dto.StudentDTO;
 import org.modelmapper.ModelMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+// import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.PageRequest;
 
@@ -20,9 +20,9 @@ public class StudentService {
     private ModelMapper modelMapper;
     @Autowired
     private StudentRepository studentRepository;
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll();
-    }
+    // public List<Student> getAllStudents() {
+    //     return studentRepository.findAll();
+    // }
     public Student getStudentByName(String name) {
         return studentRepository.findByName(name)
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with name: " + name));
@@ -73,10 +73,10 @@ public class StudentService {
         log.info("Student updated successfully: {}", updatedStudent);
         return modelMapper.map(updatedStudent, StudentDTO.class);
     }
-    public Page<StudentDTO> getAllStudents(Pageable pageable) {
-        Page<Student> studentpage = studentRepository.findAll(pageable);
-        return studentpage.map(student -> modelMapper.map(student, StudentDTO.class));
-    }
+    // public Page<StudentDTO> getAllStudents(Pageable pageable) {
+    //     Page<Student> students = studentRepository.findAll(pageable);
+    //     return students.map(student -> modelMapper.map(student, StudentDTO.class));
+    // }
     public List<StudentDTO>getAllStudentsSorted(String field){
         List<Student>students = studentRepository.findAll(Sort.by(field));
         return students.stream().map(student -> modelMapper.map(student, StudentDTO.class))
@@ -88,10 +88,12 @@ public class StudentService {
         return students.map(student -> modelMapper.map(student, StudentDTO.class));
     }
     public List<StudentDTO> getStudentsByAgeGreaterThan(Integer age) {
+        System.out.println("Age: " + age);
         List<Student> students = studentRepository.findStudentsByAgeGreaterThan(age);
         return students.stream()
                 .map(student -> modelMapper.map(student, StudentDTO.class))
                 .toList();
+                
     }
 
 }

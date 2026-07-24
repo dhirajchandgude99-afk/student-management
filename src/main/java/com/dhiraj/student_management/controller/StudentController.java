@@ -84,9 +84,15 @@ public class StudentController {
 			@RequestParam String field) {
 		return ResponseEntity.ok(studentService.getAllStudentsWithPaginationAndSorting(page, size, field));
 	}
+	
 	@GetMapping("/students/age/{age}")
 	public ResponseEntity<List<StudentDTO>> getStudentsByAgeGreaterThan(@PathVariable Integer age) {
 		return ResponseEntity.ok(studentService.getStudentsByAgeGreaterThan(age));
 	}
+
+	@GetMapping("/students/native/age/{age}")
+    public ResponseEntity<List<StudentDTO>>getStudentsByAgeGreaterThanNative(@PathVariable Integer age){
+        return ResponseEntity.ok(studentService.getStudentsByAgeGreaterThanNative(age));
+    }  
 
 }

@@ -95,5 +95,13 @@ public class StudentService {
                 .toList();
                 
     }
+    public List<StudentDTO>getStudentsByAgeGreaterThanNative(Integer age){
+
+        List<Student> students =studentRepository.findStudentsByAgeGreaterThanNative(age);
+
+        return students.stream()
+              .map(student -> modelMapper.map(student,StudentDTO.class))
+              .toList();
+    }
 
 }

@@ -14,4 +14,8 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     @Query("SELECT s FROM Student s WHERE s.age > :age")
     List<Student> findStudentsByAgeGreaterThan(@Param("age") Integer age);
+
+    @Query(
+    value = "SELECT * FROM student WHERE age > :age", nativeQuery = true)
+    List<Student> findStudentsByAgeGreaterThanNative( @Param("age") Integer age);
 }
